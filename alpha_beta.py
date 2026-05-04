@@ -1,15 +1,3 @@
-"""
-Alpha-Beta Pruning
-==================
-Alpha-Beta is an improved Minimax that skips branches that
-cannot possibly affect the final decision – making it faster.
-
-alpha = best value MAX player is guaranteed so far
-beta  = best value MIN player is guaranteed so far
-
-If alpha >= beta, we prune (stop exploring that branch).
-"""
-
 import math
 
 SAMPLE_TREE = (
@@ -29,14 +17,6 @@ pruned_count = 0   # global counter to show how many branches were skipped
 
 
 def alpha_beta(node, depth, alpha, beta, is_maximizing):
-    """
-    Same as Minimax but prunes branches that cannot change the result.
-
-    alpha         : MAX's best guaranteed value (starts at -inf)
-    beta          : MIN's best guaranteed value (starts at +inf)
-    is_maximizing : True if it's MAX's turn
-    Returns       : best score
-    """
     global pruned_count
     value, children = node
 
@@ -63,11 +43,6 @@ def alpha_beta(node, depth, alpha, beta, is_maximizing):
                 pruned_count += 1
                 break
         return best
-
-
-# ─────────────────────────────────────────────
-# Tic-Tac-Toe with Alpha-Beta
-# ─────────────────────────────────────────────
 
 def check_winner(board):
     wins = [
@@ -135,11 +110,6 @@ def best_move_ab(board):
                 best_val = val
                 move = i
     return move
-
-
-# ─────────────────────────────────────────────
-# Test cases
-# ─────────────────────────────────────────────
 
 def test_alpha_beta():
     global pruned_count
