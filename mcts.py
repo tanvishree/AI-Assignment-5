@@ -1,24 +1,6 @@
-"""
-Monte Carlo Tree Search (MCTS)
-================================
-MCTS picks moves by doing many random play-outs (simulations) from
-each possible move and choosing the one that wins most often.
-
-Four steps every iteration:
-  1. Selection   – walk the tree using UCB1 formula
-  2. Expansion   – add a new child node
-  3. Simulation  – play randomly to the end
-  4. Backprop    – update win/visit counts back up the tree
-"""
-
 import math
 import random
 import copy
-
-
-# ─────────────────────────────────────────────
-# Tic-Tac-Toe helpers
-# ─────────────────────────────────────────────
 
 def check_winner(board):
     wins = [
@@ -54,10 +36,6 @@ def print_board(board):
 def other_player(p):
     return 'O' if p == 'X' else 'X'
 
-
-# ─────────────────────────────────────────────
-# MCTS Node
-# ─────────────────────────────────────────────
 
 class MCTSNode:
     def __init__(self, board, player, parent=None, move=None):
@@ -116,10 +94,6 @@ class MCTSNode:
             # Flip result for parent (their perspective is opposite)
             self.parent.backpropagate(-result)
 
-
-# ─────────────────────────────────────────────
-# Main MCTS function
-# ─────────────────────────────────────────────
 
 def mcts(board, player, iterations=500):
     """
