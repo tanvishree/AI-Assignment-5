@@ -1,39 +1,10 @@
-"""
-Knowledge Graphs – Description and Builder
-===========================================
-A Knowledge Graph (KG) represents real-world entities and the
-relationships between them as a graph.
-
-  Nodes = entities  (e.g. "Paris", "France", "Eiffel Tower")
-  Edges = relationships (e.g. "isCapitalOf", "locatedIn", "builtIn")
-
-Each fact is stored as a TRIPLE:  (subject, predicate, object)
-  e.g. ("Eiffel Tower", "locatedIn", "Paris")
-
-We build a simple KG using Python's built-in data structures and
-then add a lightweight query interface.
-"""
-
 from collections import defaultdict
 
-
-# ─────────────────────────────────────────────
-# KnowledgeGraph class
-# ─────────────────────────────────────────────
-
 class KnowledgeGraph:
-    """
-    A simple Knowledge Graph stored as a list of (subject, predicate, object)
-    triples.  Supports adding, querying, and visualising the graph.
-    """
 
     def __init__(self):
-        # Store triples as a set to avoid duplicates
         self.triples = set()
-        # Index for fast lookup: subject → {predicate → [objects]}
         self._index = defaultdict(lambda: defaultdict(list))
-
-    # ── Adding facts ──────────────────────────
 
     def add(self, subject, predicate, obj):
         """Add a single triple to the graph."""
@@ -46,8 +17,6 @@ class KnowledgeGraph:
         """Add multiple triples at once."""
         for s, p, o in triples_list:
             self.add(s, p, o)
-
-    # ── Querying ──────────────────────────────
 
     def query(self, subject=None, predicate=None, obj=None):
         """
@@ -79,8 +48,6 @@ class KnowledgeGraph:
             entities.add(o)
         return sorted(entities)
 
-    # ── Display ───────────────────────────────
-
     def print_graph(self):
         """Print all triples in a readable format."""
         print(f"\nKnowledge Graph ({len(self.triples)} triples)")
@@ -102,11 +69,6 @@ class KnowledgeGraph:
                 found = True
         if not found:
             print(f"  No facts found for '{entity}'.")
-
-
-# ─────────────────────────────────────────────
-# Build a sample Travel Domain KG
-# ─────────────────────────────────────────────
 
 def build_travel_kg():
     kg = KnowledgeGraph()
@@ -170,11 +132,6 @@ def build_travel_kg():
         ("Florence",        "suitableFor", "Wine lovers"),
     ])
     return kg
-
-
-# ─────────────────────────────────────────────
-# Test cases
-# ─────────────────────────────────────────────
 
 def test_knowledge_graph():
     kg = build_travel_kg()
