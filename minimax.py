@@ -1,18 +1,4 @@
-"""
-Minimax Search Algorithm
-========================
-Minimax is used in two-player games (like Tic-Tac-Toe).
-- MAX player tries to get the highest score.
-- MIN player tries to get the lowest score.
-"""
-
 import math
-
-# ─────────────────────────────────────────────
-# Simple game tree for demonstration
-# Each node: (value, [children])
-# Leaf nodes have no children (empty list)
-# ─────────────────────────────────────────────
 
 SAMPLE_TREE = (
     None, [
@@ -53,11 +39,6 @@ def minimax(node, depth, is_maximizing):
             score = minimax(child, depth - 1, True)    # next level is MAX
             best = min(best, score)
         return best
-
-
-# ─────────────────────────────────────────────
-# Tic-Tac-Toe demo
-# ─────────────────────────────────────────────
 
 def print_board(board):
     print()
@@ -131,11 +112,6 @@ def best_move(board):
                 best_val = val
                 move = i
     return move
-
-
-# ─────────────────────────────────────────────
-# Test cases
-# ─────────────────────────────────────────────
 
 def test_minimax():
     print("=" * 40)
