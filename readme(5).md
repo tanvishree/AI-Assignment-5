@@ -5,24 +5,6 @@
 VUDA TANVI SHREE DATTA
 
 SE24UCSE200 
-│
-├── task1\_search\_algorithms/
-│   ├── minimax.py              ← Task 1a
-│   ├── alpha\_beta.py           ← Task 1b
-│   ├── heuristic\_alpha\_beta.py ← Task 1c
-│   └── mcts.py                 ← Task 1d
-│
-├── task2\_travel\_planner/
-│   └── travel\_planner.py       ← Task 2
-│
-├── task3\_knowledge\_graphs/
-│   └── knowledge\_graph.py      ← Task 3
-│
-├── task4\_bayesian\_networks/
-│   └── bayesian\_network.py     ← Task 4
-│
-└── README.md                   ← This file
-```
 
 Task 1 – Search Algorithms
 
