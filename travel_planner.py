@@ -1,20 +1,3 @@
-"""
-AI-Based Travel Planner
-========================
-Reuses existing knowledge bases:
-  - Tourist Places (with categories and descriptions)
-  - Food Recommendations (local cuisine per place)
-  - Wine Ontology (wine suggestions per region)
-  - Personalised Tour Plans (based on interests and duration)
-  - Cost Assessment (budget estimation)
-
-The planner builds a personalised tour plan + cost summary.
-"""
-
-# ─────────────────────────────────────────────
-# Knowledge Bases (KB)
-# ─────────────────────────────────────────────
-
 TOURIST_PLACES_KB = {
     "Paris": {
         "country": "France",
