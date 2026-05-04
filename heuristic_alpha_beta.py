@@ -1,21 +1,4 @@
-"""
-Heuristic Alpha-Beta Search
-============================
-When a game tree is too large to search completely, we:
-1. Limit the depth we search (depth limit).
-2. Use a heuristic function to ESTIMATE how good a position is
-   at the depth limit instead of searching all the way to the end.
-
-This makes the algorithm practical for real games.
-"""
-
 import math
-
-
-# ─────────────────────────────────────────────
-# Tic-Tac-Toe helpers
-# ─────────────────────────────────────────────
-
 def check_winner(board):
     wins = [
         [0,1,2],[3,4,5],[6,7,8],
@@ -38,11 +21,6 @@ def print_board(board):
         if i < 2:
             print("---------")
     print()
-
-
-# ─────────────────────────────────────────────
-# Heuristic function
-# ─────────────────────────────────────────────
 
 def heuristic(board):
     """
@@ -70,12 +48,6 @@ def heuristic(board):
         if x_count == 0:          # O can still win this line
             score -= o_count * 10
     return score
-
-
-# ─────────────────────────────────────────────
-# Heuristic Alpha-Beta
-# ─────────────────────────────────────────────
-
 def heuristic_alpha_beta(board, depth, alpha, beta, is_maximizing):
     """
     Same as Alpha-Beta but stops at 'depth' and uses heuristic()
@@ -128,11 +100,6 @@ def best_move_heuristic(board, depth=4):
                 best_val = val
                 move = i
     return move
-
-
-# ─────────────────────────────────────────────
-# Test cases
-# ─────────────────────────────────────────────
 
 def test_heuristic():
     print("=" * 40)
