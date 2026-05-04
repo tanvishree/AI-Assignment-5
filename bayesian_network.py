@@ -1,34 +1,4 @@
-"""
-Bayesian Networks – Modelling, Representing, and Inferencing
-=============================================================
-A Bayesian Network (BN) is a graph where:
-  - Nodes = random variables (events with probabilities)
-  - Edges = causal / dependency relationships
-  - Each node has a Conditional Probability Table (CPT)
-
-This example models:
-  Rain → WetGrass
-  Sprinkler → WetGrass
-  CloudyCloudy → Rain
-  Cloudy → Sprinkler
-
-Graph:
-  Cloudy
-   /   \
-Rain  Sprinkler
-   \   /
-  WetGrass
-
-We implement forward sampling and exact inference from scratch.
-"""
-
 import random
-
-
-# ─────────────────────────────────────────────
-# Node class – stores the CPT
-# ─────────────────────────────────────────────
-
 class BayesNode:
     """
     A node in a Bayesian Network.
@@ -52,11 +22,6 @@ class BayesNode:
         """
         p_true = self.cpt[parent_values]
         return p_true if value else (1 - p_true)
-
-
-# ─────────────────────────────────────────────
-# Bayesian Network class
-# ─────────────────────────────────────────────
 
 class BayesianNetwork:
     """
@@ -166,17 +131,6 @@ class BayesianNetwork:
             return None
         return (p_true / total) if query_val else (p_false / total)
 
-
-# ─────────────────────────────────────────────
-# Build the Weather Bayesian Network
-# ─────────────────────────────────────────────
-#
-# Network structure:
-#   Cloudy → Rain
-#   Cloudy → Sprinkler
-#   Rain, Sprinkler → WetGrass
-# ─────────────────────────────────────────────
-
 def build_weather_bn():
     bn = BayesianNetwork()
 
@@ -186,10 +140,6 @@ def build_weather_bn():
         parents=[],
         cpt={(): 0.5}
     )
-
-    # P(Rain | Cloudy)
-    # Cloudy=True  → P(Rain)=0.8
-    # Cloudy=False → P(Rain)=0.2
     rain = BayesNode(
         name="Rain",
         parents=["Cloudy"],
@@ -199,9 +149,6 @@ def build_weather_bn():
         }
     )
 
-    # P(Sprinkler | Cloudy)
-    # Cloudy=True  → Sprinkler less likely (0.1) – clouds → rain, not sprinkler
-    # Cloudy=False → Sprinkler more likely (0.5)
     sprinkler = BayesNode(
         name="Sprinkler",
         parents=["Cloudy"],
@@ -228,12 +175,7 @@ def build_weather_bn():
     bn.add_node(sprinkler)
     bn.add_node(wet_grass)
     return bn
-
-
-# ─────────────────────────────────────────────
-# Test cases
-# ─────────────────────────────────────────────
-
+  
 def test_bayesian_network():
     random.seed(42)
     bn = build_weather_bn()
